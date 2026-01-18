@@ -109,12 +109,13 @@ def main():
 
             # Discord message (mirrors console output)
             discord_message = (
-    f"# 🚨 {title}\n"
+    f"## 🚨 {title} 🚨\n"
     f"At {created_at} - {relative}\n"
     f"**Status:** {incident_status}\n\n"
-    f"**Components:**\n"
+    f"###Components:\n"
     f"{components}\n\n"
-    f"**Details:** {description}\n\n"
+    f"###Details:\n"
+    f"__{description}__\n\n"
     f"[Go to incident page](https://status.dndbeyond.com/{incident_id})\n"
     f"[Go to status page](https://status.dndbeyond.com)\n"
     f"===End==="
