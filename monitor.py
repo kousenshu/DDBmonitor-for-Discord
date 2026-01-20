@@ -76,6 +76,18 @@ def discord_relative_time(ts):
 
     return f"<t:{unix_ts}:R>"
 
+def discord_relative_time2(ts):
+    """
+    Returns a Discord relative timestamp: <t:unix:F>
+    """
+    if not ts:
+        return "Unknown time"
+
+    utc_dt = datetime.fromisoformat(ts.replace("Z", "+00:00"))
+    unix_ts = int(utc_dt.timestamp())
+
+    return f"<t:{unix_ts}:F>"
+
 
 
 def main():
@@ -94,6 +106,7 @@ def main():
 
             created_at = format_timestamp(entry.get("createdAt"))
             relative = discord_relative_time(entry.get("createdAt"))
+            discordLocalized = discord_relative_time(entry.get("createdAt"))
             components = format_components(entry.get("componentsAffected", []))
             description = entry.get("description", "No description provided.")
 
@@ -111,6 +124,7 @@ def main():
             discord_message = (
     f"## 🚨 {title} 🚨\n"
     f"At {created_at} - {relative}\n"
+    f"At {discord_localized} - {relative}\n"
     f"**Status:** *{incident_status}*\n\n"
     f"### Components:\n"
     f"{components}\n\n"
