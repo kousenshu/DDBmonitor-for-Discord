@@ -123,7 +123,7 @@ def main():
 
             # Discord message (mirrors console output)
             discord_message = (
-    f"## 🚨 {title} 🚨\n"
+    f"##  {title} \n"
     f"{discordLocalized}\n"
     f"{relative}\n"
     f"**Status:** *{incident_status}*\n\n"
