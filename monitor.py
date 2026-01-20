@@ -123,8 +123,8 @@ def main():
             # Discord message (mirrors console output)
             discord_message = (
     f"## 🚨 {title} 🚨\n"
-    f"At {created_at} - {relative}\n"
-    f"At {discordLocalized} - {relative}\n"
+    f"At {discordLocalized}\n"
+    f"{relative}\n"
     f"**Status:** *{incident_status}*\n\n"
     f"### Components:\n"
     f"{components}\n\n"
