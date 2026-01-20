@@ -55,6 +55,9 @@ def format_components(components):
         for c in components
     )
 
+"""
+Depreciated function
+"""
 def format_timestamp(ts):
     if not ts:
         return "Unknown time"
@@ -76,7 +79,7 @@ def discord_relative_time(ts):
 
     return f"<t:{unix_ts}:R>"
 
-def discord_relative_time2(ts):
+def discord_localized_time(ts):
     """
     Returns a Discord relative timestamp: <t:unix:F>
     """
@@ -104,9 +107,8 @@ def main():
             if not entry_id or entry_id in seen_timeline_ids:
                 continue
 
-            created_at = format_timestamp(entry.get("createdAt"))
             relative = discord_relative_time(entry.get("createdAt"))
-            discordLocalized = discord_relative_time2(entry.get("createdAt"))
+            discordLocalized = discord_localized_time(entry.get("createdAt"))
             components = format_components(entry.get("componentsAffected", []))
             description = entry.get("description", "No description provided.")
 
@@ -115,7 +117,6 @@ def main():
             print(title)
             print(incident_id)
             print(incident_status)
-            print(created_at)
             print(components)
             print(description)
             print("-" * 50)
@@ -123,7 +124,7 @@ def main():
             # Discord message (mirrors console output)
             discord_message = (
     f"## 🚨 {title} 🚨\n"
-    f"At {discordLocalized}\n"
+    f"{discordLocalized}\n"
     f"{relative}\n"
     f"**Status:** *{incident_status}*\n\n"
     f"### Components:\n"
